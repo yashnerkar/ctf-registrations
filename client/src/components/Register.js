@@ -48,8 +48,8 @@ function Register({
       await fetch("/register", {
         method: "POST",
         headers: {
-          "Accept": "application/json",
-          "Content-Type": "ax`pplication/json",
+          Accept: "application/json",
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({
           group: groupTrim,
@@ -70,7 +70,7 @@ function Register({
           password: passwordTrim,
         }),
         credentials: "include",
-      })
+      });
     const res = await data.json();
     showAlert(res);
     if (
