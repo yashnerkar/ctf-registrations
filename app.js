@@ -2,10 +2,9 @@ require('dotenv').config();
 const express = require("express");
 const mongoose = require("mongoose");
 const app = express();
-const dotenv = require('dotenv');
+
 const path = require("path");
 const cors = require("cors");
-// dotenv.config({ path: __dirname + '/.env' });
 const url = process.env.DATABASE_URL;
 const PORT = process.env.PORT || 8000
 mongoose.set('strictQuery', false);
@@ -23,8 +22,6 @@ app.use(cors());
 
 app.use(require(path.join(__dirname, "routes/user.js")));
 
-
-
 // app.use(express.static('client/build'));
 if (process.env.NODE_ENV === "production") {
     // app.use(express.static("client/build"));
@@ -34,9 +31,6 @@ if (process.env.NODE_ENV === "production") {
     });
 }
 
-app.all('*', (req, res) => {
-    res.json({ "every thing": "is awesome" })
-})
 
 //Connect to the database before listening
 connectDB().then(() => {
