@@ -20,17 +20,16 @@ const connectDB = async () => {
 app.use(express.json());
 app.use(cors());
 
-app.use(require(path.join(__dirname, "routes/user.js")));
 
-// app.use(express.static('client/build'));
-if (process.env.NODE_ENV === "production") {
-    // app.use(express.static("client/build"));
-    app.use(express.static(path.join(__dirname, "client", "build")));
-    app.get("/", (req, res) => {
-        res.sendFile(path.join(__dirname, "client", "build", "index.html"));
-    });
-}
-
+app.use(express.static(path.join(__dirname, "./client/build")));
+app.get("*", function (_, res) {
+    res.sendFile(
+        path.join(__dirname, "./client/build/index.html"),
+        function (err) {
+            res.status(500).send(err);
+        }
+    );
+});
 
 //Connect to the database before listening
 connectDB().then(() => {
