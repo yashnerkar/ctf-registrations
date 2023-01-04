@@ -16,13 +16,14 @@ try {
         useNewUrlParser: true,
         useUnifiedTopology: true,
     });
+    console.log("Connected to database");
 } catch (error) {
     console.log(error);
 }
 
 app.use(express.json());
 app.use(cors());
-app.use(express.static(path.join(__dirname, "./client/build")));
+// app.use(express.static(path.join(__dirname, "./client/build")));
 // mongoose.connect(url, { useNewUrlParser: true, useUnifiedTopology: true })
 
 app.use(require(path.join(__dirname, "routes/user.js")));
@@ -31,13 +32,14 @@ app.use(require(path.join(__dirname, "routes/user.js")));
 
 // app.use(express.static('client/build'));
 if (process.env.NODE_ENV === "production") {
-    app.use(express.static("client/build"));
-    app.get("*", (req, res) => {
+    // app.use(express.static("client/build"));
+    app.use(express.static(path.join(__dirname, "client", "build")));
+    app.get("/", (req, res) => {
         res.sendFile(path.join(__dirname, "client", "build", "index.html"));
     });
 }
 
 
-app.listen(process.env.PORT || 8000, function() {
+app.listen(process.env.PORT || 8000, function () {
     console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
 });
