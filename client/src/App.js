@@ -8,12 +8,21 @@ import Admin from "./components/Admin";
 function App() {
   const [register, setRegister] = useState({
     group: "",
-    gmail: "",
+    gmailFirstMember: "",
+    gmailSecondMember: "",
+    collegeFirstMember: "",
+    collegeSecondMember: "",
+    phoneFirstMember: "",
+    phoneSecondMember: "",
+    firstMemberInfo: "",
+    secondMemberInfo: "",
+    departmentOfFirstMember: "",
+    departmentOfSecondMember: "",
+    yearOfFirstMember: "",
+    yearOfSecondMember: "",
     firstMember: "",
     secondMember: "",
-    thirdMember: "",
     password: "",
-
   });
   const onChange = (e) => {
     const { value, name } = e.target;
@@ -28,7 +37,7 @@ function App() {
     color: null,
     text: null,
     message: null,
-    display: 'none',
+    display: "none",
   });
   const showAlert = (res) => {
     const show = res.split(":");
@@ -36,33 +45,48 @@ function App() {
       color: show[0],
       text: show[1],
       message: show[2],
-      display: 'block',
+      display: "block",
     });
     setTimeout(() => {
       setAlert({
         color: null,
         text: null,
         message: null,
-        display: 'none',
+        display: "none",
       });
     }, 5000);
   };
   return (
     <div>
       <Router>
-        <Alert color={alert.color} text={alert.text} message={alert.message} display={alert.display} />{" "}
+        <Alert
+          color={alert.color}
+          text={alert.text}
+          message={alert.message}
+          display={alert.display}
+        />{" "}
         <Switch>
-          <Route exact path="/CTF-admin" component={Admin} />{" "}
+          <Route exact path="/ctf-admin" component={Admin} />{" "}
           <Route exact path="/register">
             <Register
               setRegister={setRegister}
               onChange={onChange}
               group={register.group}
+              gmailFirstMember={register.gmailFirstMember}
+              gmailSecondMember={register.gmailSecondMember}
+              collegeFirstMember={register.collegeFirstMember}
+              collegeSecondMember={register.collegeSecondMember}
+              phoneFirstMember={register.phoneFirstMember}
+              phoneSecondMember={register.phoneSecondMember}
+              firstMemberInfo={register.firstMemberInfo}
+              departmentOfFirstMember={register.departmentOfFirstMember}
+              yearOfFirstMember={register.yearOfFirstMember}
+              departmentOfSecondMember={register.departmentOfSecondMember}
+              yearOfSecondMember={register.yearOfSecondMember}
+              secondMemberInfo={register.secondMemberInfo}
               firstMember={register.firstMember}
               secondMember={register.secondMember}
-              thirdMember={register.thirdMember}
               password={register.password}
-              gmail={register.gmail}
               showAlert={showAlert}
             />{" "}
           </Route>{" "}
