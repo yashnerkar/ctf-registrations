@@ -67,7 +67,7 @@ function App() {
         />{" "}
         <Switch>
           <Route exact path="/ctf-admin" component={Admin} />{" "}
-          <Route exact path="/register">
+          <Route exact path="/ctfregister">
             <Register
               setRegister={setRegister}
               onChange={onChange}

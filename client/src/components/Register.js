@@ -44,9 +44,7 @@ function Register({
 
     const passwordTrim = password.trim();
 
-    const data = 
-    
-    try {
+    const data =
       await fetch("/register", {
         method: "POST",
         headers: {
@@ -73,9 +71,6 @@ function Register({
         }),
         credentials: "include",
       })
-    } catch (err) {
-      console.log(err);
-    }
     const res = await data.json();
     showAlert(res);
     if (
