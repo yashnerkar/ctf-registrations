@@ -1,5 +1,4 @@
-require('dotenv').config();
-const dotenv = require('dotenv');
+require("dotenv").config();
 const express = require("express");
 const User = require("../model/UserSchema");
 const Data = require("../model/DataSchema");
@@ -8,14 +7,30 @@ const bcrypt = require("bcrypt");
 const nodemailer = require("nodemailer");
 const saltRounds = 10;
 
-
-
-router.post("/register", async(req, res) => {
-    const { group, gmail, firstMember, secondMember, thirdMember, password } =
-    req.body;
+router.post("/register", async (req, res) => {
+    const {
+        group,
+        gmailFirstMember,
+        gmailSecondMember,
+        collegeFirstMember,
+        collegeSecondMember,
+        phoneFirstMember,
+        phoneSecondMember,
+        firstMemberInfo,
+        secondMemberInfo,
+        firstMember,
+        secondMember,
+        departmentOfFirstMember,
+        departmentOfSecondMember,
+        yearOfFirstMember,
+        yearOfSecondMember,
+        password
+    } =
+        req.body;
     try {
+        const groupLower = group.toLowerCase();
         const passwordHash = bcrypt.hashSync(password, saltRounds);
-        const check = await User.find({ group: group });
+        const check = await User.find({ group: groupLower });
 
         if (check.length) {
             return res.json(
@@ -24,16 +39,28 @@ router.post("/register", async(req, res) => {
         }
 
         const response = await new User({
-            group,
-            gmail,
+            group: groupLower,
+            gmailFirstMember,
+            gmailSecondMember,
+            collegeFirstMember,
+            collegeSecondMember,
+            phoneFirstMember,
+            phoneSecondMember,
+            firstMemberInfo,
+            secondMemberInfo,
+            departmentOfFirstMember,
+            departmentOfSecondMember,
+            yearOfFirstMember,
+            yearOfSecondMember,
             firstMember,
             secondMember,
-            thirdMember,
             password: passwordHash,
         });
         await response.save();
-        console.log("hello");
-        res.json("greenyellow:black:Registeration Successful. Please, check your mail for your TeamName and Password");
+
+        res.json(
+            "greenyellow:black:Registeration Successful. Please, check your mail for your TeamName and Password"
+        );
 
         const options = `
      <h2>Hello<strong> ${group}</strong></h2>
@@ -56,20 +83,19 @@ router.post("/register", async(req, res) => {
         });
 
         let info = await transporter.sendMail({
-            from: '"CSI-DMCE"<hellboyk723@gmail.com>',
-            to: gmail,
+            from: `"CSI-DMCE"<csi.dmce@dmce.ac.in>`,
+            to: gmailFirstMember,
             subject: "CTF-Registeration Successful ✔",
-            text: "HAHAHHAHHHAHH",
+            text: "CSI-CTF-DMCE",
             html: options,
         });
 
         console.log("Message sent: %s", info.messageId);
-        // console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
     } catch (error) {
         console.log(error);
     }
 });
-router.get("/site-admin", async(req, res) => {
+router.get("/site-admin", async (req, res) => {
     const data = await Data.find();
     res.json(data);
 });

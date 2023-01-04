@@ -9,7 +9,7 @@ function Home() {
         <a href="https://csidmce.tech/" target={"_blank"} rel="noreferrer">
           <img
             id="csi-logo"
-            src="csi-logo.png"
+            src="CSI-CATT-DMCE.webp"
             alt="CSI Logo"
             className="logo mx-4"
           />
