@@ -6,6 +6,7 @@ const app = express();
 const path = require("path");
 const cors = require("cors");
 const url = process.env.DATABASE_URL;
+const user = require("./routes/user");
 const PORT = process.env.PORT || 8000
 mongoose.set('strictQuery', false);
 const connectDB = async () => {
@@ -19,8 +20,7 @@ const connectDB = async () => {
 }
 app.use(express.json());
 app.use(cors());
-
-
+app.use("/", user);
 app.use(express.static(path.join(__dirname, "./client/build")));
 app.get("*", function (_, res) {
     res.sendFile(
