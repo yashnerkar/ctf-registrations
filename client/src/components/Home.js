@@ -35,9 +35,9 @@ function Home() {
         <div className="container text-center">
           <Link role="button" to="/ctfregister">
             <button className="pulse buttons"> APPLY NOW </button>{" "}
-          </Link>{" "}
-        </div>{" "}
-      </div>{" "}
+          </Link>
+        </div>
+      </div>
     </div>
   );
 }
