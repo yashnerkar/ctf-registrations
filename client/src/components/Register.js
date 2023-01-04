@@ -41,35 +41,41 @@ function Register({
     const phoneSecondMemberTrim = phoneSecondMember.trim();
     const firstMemberTrim = firstMember.trim().toLowerCase();
     const secondMemberTrim = secondMember.trim().toLowerCase();
-    
+
     const passwordTrim = password.trim();
 
-    const data = await fetch("/register", {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        group: groupTrim,
-        gmailFirstMember: gmailFirstMemberTrim,
-        gmailSecondMember: gmailSecondMemberTrim,
-        firstMemberInfo: firstMemberInfoTrim,
-        secondMemberInfo: secondMemberInfoTrim,
-        departmentOfSecondMember: departmentOfSecondMemberTrim,
-        departmentOfFirstMember: departmentOfFirstMemberTrim,
-        yearOfFirstMember: yearOfFirstMemberTrim,
-        yearOfSecondMember: yearOfSecondMemberTrim,
-        collegeFirstMember: collegeFirstMemberTrim,
-        collegeSecondMember: collegeSecondMemberTrim,
-        phoneFirstMember: phoneFirstMemberTrim,
-        phoneSecondMember: phoneSecondMemberTrim,
-        firstMember: firstMemberTrim,
-        secondMember: secondMemberTrim,
-        password: passwordTrim,
-      }),
-      credentials: "include",
-    });
+    const data = 
+    
+    try {
+      await fetch("/register", {
+        method: "POST",
+        headers: {
+          "Accept": "application/json",
+          "Content-Type": "ax`pplication/json",
+        },
+        body: JSON.stringify({
+          group: groupTrim,
+          gmailFirstMember: gmailFirstMemberTrim,
+          gmailSecondMember: gmailSecondMemberTrim,
+          firstMemberInfo: firstMemberInfoTrim,
+          secondMemberInfo: secondMemberInfoTrim,
+          departmentOfSecondMember: departmentOfSecondMemberTrim,
+          departmentOfFirstMember: departmentOfFirstMemberTrim,
+          yearOfFirstMember: yearOfFirstMemberTrim,
+          yearOfSecondMember: yearOfSecondMemberTrim,
+          collegeFirstMember: collegeFirstMemberTrim,
+          collegeSecondMember: collegeSecondMemberTrim,
+          phoneFirstMember: phoneFirstMemberTrim,
+          phoneSecondMember: phoneSecondMemberTrim,
+          firstMember: firstMemberTrim,
+          secondMember: secondMemberTrim,
+          password: passwordTrim,
+        }),
+        credentials: "include",
+      })
+    } catch (err) {
+      console.log(err);
+    }
     const res = await data.json();
     showAlert(res);
     if (
@@ -295,7 +301,7 @@ function Register({
                 placeholder="phone no. of second member"
               />
             </div>{" "}
-           
+
             <div className="form-group mt-3">
               <input
                 type="password"
