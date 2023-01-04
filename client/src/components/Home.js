@@ -33,7 +33,7 @@ function Home() {
           compete in this CTF...{" "}
         </p>{" "}
         <div className="container text-center">
-          <Link role="button" to="/register">
+          <Link role="button" to="/ctfregister">
             <button className="pulse buttons"> APPLY NOW </button>{" "}
           </Link>{" "}
         </div>{" "}
